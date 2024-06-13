@@ -1,6 +1,17 @@
 const database = require("../Config/database"); // Import the connectDB function
 const EmailSender = require("../Utils/email"); // Import the EmailSender function
 
+async function getAllReservations(req, res, next) {
+  try {
+    const db = await database.connect("reservations");
+    const reservations = await db.find().toArray();
+    res.status(200).json(reservations);
+  } catch (error) {
+    console.error("Error occurred while retrieving reservations:", error);
+    next(error);
+  }
+}
+
 async function reservation(req, res, next) {
   try {
     // Extract reservation details from the request body
