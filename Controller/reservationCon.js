@@ -1,6 +1,6 @@
-const reservationService = require("../Service/service");
+const reservationService = require("../Service/reserveService");
 
-async function reservation(req, res, next) {
+async function reservation(req, res) {
   try {
     const { name, no_of_people, date, phonenumber, email } = req.body;
     await reservationService.createReservation({
@@ -21,18 +21,16 @@ async function reservation(req, res, next) {
       .status(200)
       .json({ message: "Reservation successful and emails sent." });
   } catch (error) {
-    console.error("Error occurred during reservation:", error);
-    next(error);
+    res.status(500).json({ message: error.message });
   }
 }
 
-async function getAllReservations(req, res, next) {
+async function getAllReservations(req, res) {
   try {
     const reservations = await reservationService.getAllReservations();
     res.status(200).json(reservations);
   } catch (error) {
-    console.error("Error occurred while retrieving reservations:", error);
-    next(error);
+    res.status(500).json({ message: error.message });
   }
 }
 
