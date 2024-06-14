@@ -29,7 +29,7 @@ app.use(cors(corsOptions));
 // });
 
 app.get("/", (req, res) => {
-  res.send("HELLO TOSIN");
+  res.send("HELLO BAYODE");
 });
 
 app.use("/api", reservationRoute);
