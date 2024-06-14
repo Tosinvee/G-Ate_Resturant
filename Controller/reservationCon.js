@@ -10,6 +10,7 @@ async function reservation(req, res) {
       phonenumber,
       email,
     });
+    //after the data has been inuted in the database it automatically sends an email
     await reservationService.sendReservationEmails(
       name,
       no_of_people,

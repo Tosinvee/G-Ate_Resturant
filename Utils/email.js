@@ -14,14 +14,14 @@ const transporter = nodemailer.createTransport({
 
 async function sendEmail(payload) {
   const mailOptions = {
-    from: payload.sender ? payload.sender : process.env.EMAIL, // Sender's email address
-    to: payload.email, // Recipient's email address
+    from: payload.sender ? payload.sender : process.env.EMAIL, //  email address of the person sending the email
+    to: payload.email, //  email address of the receiver of the email
     subject: payload.subject, // Subject of the email
     html: payload.html, // HTML body content
   };
 
   try {
-    let info = await transporter.sendMail(mailOptions); // Send the email
+    let info = await transporter.sendMail(mailOptions); // Sends the email
     console.log("Message sent: %s", info.messageId);
   } catch (error) {
     console.error("Error occurred while sending email:", error);

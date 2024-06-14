@@ -1,5 +1,6 @@
 const database = require("../config/database");
 const EmailSender = require("../utils/email");
+require("dotenv").config();
 
 async function createReservation(reservationData) {
   const { name, no_of_people, date, phonenumber, email } = reservationData;
@@ -16,6 +17,7 @@ async function createReservation(reservationData) {
   }
 }
 
+//To send a reservation email
 async function sendReservationEmails(
   name,
   no_of_people,
@@ -25,8 +27,8 @@ async function sendReservationEmails(
 ) {
   try {
     const adminMessage = {
-      sender: "admin@example.com",
-      email: "admin@example.com",
+      sender: process.env.EMAIL,
+      email: process.env.EMAIL,
       subject: "New Reservation",
       html: `<h1>New Reservation</h1>
              <p>Name: ${name}</p>
@@ -37,7 +39,7 @@ async function sendReservationEmails(
     };
 
     const userMessage = {
-      sender: "admin@example.com",
+      sender: process.env.EMAIL,
       email: email,
       subject: "Reservation Confirmation",
       html: `<h1>Reservation Confirmation</h1>
@@ -48,7 +50,7 @@ async function sendReservationEmails(
              <p>Phone Number: ${phonenumber}</p>
              <p>Email: ${email}</p>`,
     };
-
+    //The logic in the utils folder are being implemented here
     await EmailSender(adminMessage);
     await EmailSender(userMessage);
   } catch (error) {
