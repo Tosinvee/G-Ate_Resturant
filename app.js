@@ -23,10 +23,10 @@ app.use(cors(corsOptions));
 // console.log(`DB_PROTOCOL: ${process.env.DB_PROTOCOL}`);
 // console.log(`DATABASENAME: ${process.env.DATABASENAME}`);
 
-app.use((req, res, next) => {
-  console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
+//   next();
+// });
 
 app.get("/", (req, res) => {
   res.send("HELLO TOSIN");
