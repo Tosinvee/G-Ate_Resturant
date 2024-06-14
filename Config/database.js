@@ -1,31 +1,22 @@
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 
-const port = process.env.DB_PORT;
-const host = process.env.DB_HOST;
-const protocol = process.env.DB_PROTOCOL;
-const dbName = process.env.DATABASENAME;
+const uri = process.env.MONGODB_URI;
 
-if (!host || !port || !protocol || !dbName) {
-  throw new Error(
-    "One or more required environment variables (DB_HOST, DB_PORT, DB_PROTOCOL, DATABASENAME) are missing or empty."
-  );
+if (!uri) {
+  throw new Error("Missing MONGODB_URI in environment variables");
 }
 
-let databaseString = `${protocol}://${host}:${port}`;
-
-const client = new MongoClient(databaseString);
+const client = new MongoClient(uri);
 
 async function connect(collection) {
   try {
-    const connection = await client.connect();
-
-    const db = connection.db(dbName);
-
+    await client.connect();
+    console.log("Connected to MongoDB Atlas");
+    const db = client.db();
     return db.collection(collection);
   } catch (error) {
-    console.log(`Error connecting to MongoDB: ${error}`);
-
+    console.error("Error connecting to MongoDB:", error);
     throw error;
   }
 }
