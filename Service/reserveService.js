@@ -1,5 +1,5 @@
-const database = require("../config/database");
-const EmailSender = require("../utils/email");
+const database = require("../Config/database");
+const EmailSender = require("../Utils/email");
 require("dotenv").config();
 
 async function createReservation(reservationData) {
