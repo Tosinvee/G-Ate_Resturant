@@ -1,3 +1,19 @@
 # G-Ate_Resturant-
 
-The project involves building a reservation system for a restaurant, where users can make reservations online. The system will store reservation data in a MongoDB database and send confirmation emails to both the admin and the user upon successful reservation.
+# Reservation System
+
+This is a Node.js-based reservation system that allows users to create and view reservations. The system sends confirmation emails to users and notifications to the admin upon reservation creation.
+
+## Features
+
+- Create reservations
+- View all reservations
+- Send confirmation emails to users
+- Send notification emails to admin
+
+## Requirements
+
+- Node.js
+- Express js
+- MongoDB
+- An email service (Gmail)
